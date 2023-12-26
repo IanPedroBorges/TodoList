@@ -5,7 +5,14 @@ export default {
 		'./src/**/*.{js,ts,jsx,tsx}',
 	],
 	theme: {
-		extend: {},
+		fontFamily: {
+			'sans': 'Lexend Deca, sans-serif',
+		},
+		extend: {
+			spacing: {
+				'100': '28rem'
+			}
+		},
 	},
 	plugins: [],
 };

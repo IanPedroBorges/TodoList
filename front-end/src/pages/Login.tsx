@@ -9,8 +9,6 @@ import { FaRegEye, FaEyeSlash } from 'react-icons/fa';
 import { LocalStorageContext } from '../context/LocalStorageContext/LocalStorageContext';
 import axios from 'axios';
 
-const backendUrl = process.env.BACKEND_URL || 'http://localhost:3001';
-
 export default function Login() {
 	const [inputsLogin, setInputsLogin] = useState<LoginType>(initialLoginState);
 	const [showPassword, setShowPassword] = useState(false);
@@ -31,8 +29,8 @@ export default function Login() {
 		if (remember) {
 			setLogin(inputsLogin);
 		}
-		const response = await axios.post(`${backendUrl}/login`, inputsLogin);
-		console.log(response);
+		const data = await axios.post('http://localhost:3001/users/login', inputsLogin);
+		console.log(data);
 	};
 
 	return (

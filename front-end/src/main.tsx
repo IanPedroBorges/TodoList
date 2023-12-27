@@ -3,10 +3,13 @@ import App from './App.tsx';
 import './index.css';
 
 import LocalStorageProvider from './context/LocalStorageContext/index.tsx';
+import { BrowserRouter } from 'react-router-dom';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<LocalStorageProvider>
-		<App />
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
 	</LocalStorageProvider>
 );

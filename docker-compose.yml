@@ -1,0 +1,42 @@
+version: '3.8'
+name: 'todo'
+services:
+  db:
+    container_name: postgresdb
+    image: postgres
+    ports:
+      - 5433:5432
+    volumes:
+      - db:/var/lib/postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=postgresdb
+    restart: 'always'
+
+  backend:
+    build: ./back-end
+    container_name: backend
+    working_dir: /app-backend
+    volumes:
+      - ./back-end/src:/app-backend/src
+    ports:
+      - 3001:3001
+    command: npm run dev
+    environment:
+      - DB_HOST=postgresdb
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - DB_NAME=postgresdb
+      - DB_PORT=5432
+      - JWT_SECRET=jwt_secret
+      - APP_PORT=3001
+    depends_on:
+      - db
+    healthcheck:
+      test: ['CMD', 'lsof', '-t', '-i:3001']
+      timeout: 10s
+      retries: 5
+
+volumes:
+  db:

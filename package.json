@@ -1,0 +1,13 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "docker-compose up -d --build",
+    "start": "cd front-end && npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
